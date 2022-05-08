@@ -26,14 +26,17 @@ namespace Full_GRASP_And_SOLID
             recipe.AddStep(new Step(GetProduct("Café"), 100, GetEquipment("Cafetera"), 120));
             recipe.AddStep(new Step(GetProduct("Leche"), 200, GetEquipment("Hervidor"), 60));
 
-            AllInOnePrinter printer = new AllInOnePrinter();
-            IPrinter printer1;
-            printer1 = new FilePrinter();
-            printer1.PrintTicket(recipe);
-            printer1 = new ConsolePrinter();
-            printer1.PrintTicket(recipe);
-            printer.PrintRecipe(recipe, Destination.Console);
-            printer.PrintRecipe(recipe, Destination.File);
+
+            /// <summary>
+            /// Aplicando el patrón Polymorfism ya no es necesario preguntar por el destino de la impresión
+            /// para cambiar el comportamiento de la operación, ahora cada clase de tipo IPrinter tiene la responsabilidad
+            /// de imprimir la receta en un destino diferente.
+            /// </summary>
+            IPrinter printer;
+            printer = new FilePrinter();
+            printer.PrintTicket(recipe);
+            printer = new ConsolePrinter();
+            printer.PrintTicket(recipe);
         }
 
         private static void PopulateCatalogs()
