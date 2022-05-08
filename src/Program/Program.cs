@@ -27,6 +27,11 @@ namespace Full_GRASP_And_SOLID
             recipe.AddStep(new Step(GetProduct("Leche"), 200, GetEquipment("Hervidor"), 60));
 
             AllInOnePrinter printer = new AllInOnePrinter();
+            IPrinter printer1;
+            printer1 = new FilePrinter();
+            printer1.PrintTicket(recipe);
+            printer1 = new ConsolePrinter();
+            printer1.PrintTicket(recipe);
             printer.PrintRecipe(recipe, Destination.Console);
             printer.PrintRecipe(recipe, Destination.File);
         }
